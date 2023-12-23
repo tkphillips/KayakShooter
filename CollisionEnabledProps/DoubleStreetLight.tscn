@@ -15,7 +15,6 @@ metallic = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m3ei"]
 resource_name = "_defaultMat"
-albedo_color = Color(1, 1, 1, 1)
 emission_enabled = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_u7oqh"]
@@ -104,7 +103,7 @@ data = PackedVector3Array(0.0125, 0.6464, -0.0247, 0.0125, 0.6259, -0.0066, -0.0
 use_collision = true
 
 [node name="light_curvedDouble" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.75)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_3vv1u")
 mesh = SubResource("ArrayMesh_kxppy")
 skeleton = NodePath("")

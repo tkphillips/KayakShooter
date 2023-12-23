@@ -4,9 +4,10 @@ var speed
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
-const SENS = 0.03
+var sens = ProjectSettings.get_setting("player/look_sensitivity")
 
-#view bobbing stuff
+#view bobbing stuff"look_sensitivity"
+var bob_on = ProjectSettings.get_setting("player/bobbing")
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 var t_bob = 0.0
@@ -27,8 +28,8 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENS)
-		camera.rotate_x(-event.relative.y * SENS)
+		head.rotate_y(-event.relative.x * sens)
+		camera.rotate_x(-event.relative.y * sens)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 
 func _physics_process(delta):
@@ -64,8 +65,9 @@ func _physics_process(delta):
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 
 	# view bobbing
-	t_bob += delta * velocity.length() * float(is_on_floor())
-	camera.transform.origin = _headbob(t_bob)
+	if bob_on:
+		t_bob += delta * velocity.length() * float(is_on_floor())
+		camera.transform.origin = _headbob(t_bob)
 	
 	#FOV
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
