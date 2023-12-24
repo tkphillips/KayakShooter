@@ -19,6 +19,10 @@ var gravity = 9.8
 const BASE_FOV = 75.0
 const FOV_CHANGE = 0.5
 
+#signals
+signal player_hit
+
+
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
@@ -81,3 +85,6 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+	
+func hit():
+	emit_signal("player_hit")

@@ -55,4 +55,6 @@ sprint={
 [player]
 
 look_sensitivity=0.005
-bobbing=true
+Bobbing=true
+size/viewport_height=648
+size/viewport_width=1152
